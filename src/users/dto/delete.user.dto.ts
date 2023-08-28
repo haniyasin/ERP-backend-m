@@ -1,7 +1,6 @@
 import { IsNotEmpty, IsEmail } from 'class-validator';
 
 export class DeleteUserDTO {
-
   @IsNotEmpty()
   @IsEmail()
   email: string;

@@ -1,5 +1,5 @@
 export const emailHtmlContent = (password: string) => {
-   return `<html>
+  return `<html>
             <head>
             <style>
                 body {
@@ -61,6 +61,5 @@ export const emailHtmlContent = (password: string) => {
                 <h2>You can login <a href="http://localhost:3000/login">here</a>.</h2>
             </div>
             </body>
-            </html>`
-}
-
+            </html>`;
+};

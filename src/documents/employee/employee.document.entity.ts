@@ -1,5 +1,5 @@
-import { User } from "src/users/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from 'src/users/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class EmployeeDocument {
@@ -14,10 +14,10 @@ export class EmployeeDocument {
 
   @Column()
   documentType: string;
-  
+
   @Column({ nullable: true, type: 'bytea' })
   document: Buffer;
 
-  @ManyToOne(() => User, user => user.documents)
+  @ManyToOne(() => User, (user) => user.documents)
   user: User;
 }

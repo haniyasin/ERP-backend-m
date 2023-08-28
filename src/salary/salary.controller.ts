@@ -1,10 +1,10 @@
 import { Bind, Body, Controller, Get, Param, Post, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
-import { RolesName } from "src/roles/role.enum";
+import { RolesName } from "src/roles/constants";
 import { SalaryService } from "./salary.service";
 import { Salary } from "./salary.entity";
 import { Roles } from "src/roles/roles.decorator";
 import { RolesGuard } from "src/roles/roles.guard";
-import { CreateSalaryDTO } from "./dtos/create.salary.dto";
+import { CreateSalaryDTO } from "./dto/create.salary.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 
 @Controller('salaries')

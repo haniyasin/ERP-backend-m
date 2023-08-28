@@ -17,20 +17,26 @@ export class EmployeeDocumentService {
 
   async getAllEmployeeDocuments(userId: number): Promise<EmployeeDocument[]> {
     try {
-      const leaves = await this.employeeDocumentRepository.find({ relations: ['user'] });
-      return leaves.filter(leaves => leaves.user.id == userId);
+      const leaves = await this.employeeDocumentRepository.find({
+        relations: ['user'],
+      });
+      return leaves.filter((leaves) => leaves.user.id == userId);
     } catch (error) {
       throw new Error(`Error when fetching leaves: ${error}`);
     }
   }
 
-  async createNewEmployeeDocument(document: Express.Multer.File, createEmployeeDocumentDTO: CreateEmployeeDocumentDTO): Promise<EmployeeDocument> {
-    if(!document) throw new HttpException('Document is Required!', HttpStatus.BAD_REQUEST);
+  async createNewEmployeeDocument(
+    document: Express.Multer.File,
+    createEmployeeDocumentDTO: CreateEmployeeDocumentDTO,
+  ): Promise<EmployeeDocument> {
+    if (!document)
+      throw new HttpException('Document is Required!', HttpStatus.BAD_REQUEST);
 
     const id = createEmployeeDocumentDTO.user.id;
-    const user = await this.userRepository.findOne({where: {id}});
+    const user = await this.userRepository.findOne({ where: { id } });
 
-    if(!user) throw new Error(`User with id ${id} not found`);
+    if (!user) throw new Error(`User with id ${id} not found`);
 
     const fileExtension = path.extname(document.originalname).toLowerCase();
 
@@ -40,7 +46,7 @@ export class EmployeeDocumentService {
       document: document?.buffer,
       documentType: fileExtension,
       dateOfUpload: new Date(),
-    }
+    };
 
     return await this.employeeDocumentRepository.save(finishedEmployeeDocument);
   }

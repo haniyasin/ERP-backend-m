@@ -1,10 +1,18 @@
-import { Controller, Get, Param, Delete, UseGuards, Body, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Delete,
+  UseGuards,
+  Body,
+  Put,
+} from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { Projects } from './project.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
-import { RolesName } from 'src/roles/role.enum';
-import { UpdateProjectDTO } from './dtos/update.project.dto';
+import { RolesName } from 'src/roles/constants';
+import { UpdateProjectDTO } from './dto/update.project.dto';
 
 @Controller('projects')
 export class ProjectsController {

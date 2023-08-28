@@ -1,7 +1,7 @@
-import { User } from "src/users/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from 'src/users/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-export type LeaveType = "Sick" | "Paid" | "Unpaid" | "Parental"
+export type LeaveType = 'Sick' | 'Paid' | 'Unpaid' | 'Parental';
 
 @Entity()
 export class Leave {
@@ -14,12 +14,12 @@ export class Leave {
   @Column()
   endDate: Date;
 
-  @Column({type: "enum", enum: ["Sick", "Paid", "Unpaid", "Parental"]})
-  type: LeaveType;  
-  
+  @Column({ type: 'enum', enum: ['Sick', 'Paid', 'Unpaid', 'Parental'] })
+  type: LeaveType;
+
   @Column({ nullable: true, type: 'bytea' })
   document: Buffer;
 
-  @ManyToOne(() => User, user => user.leaves)
+  @ManyToOne(() => User, (user) => user.leaves)
   user: User;
 }

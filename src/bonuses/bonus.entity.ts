@@ -1,7 +1,7 @@
-import { User } from "src/users/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from 'src/users/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-export type BonusType = "Performance" | "Annual" | "Sign-on" | "Other";
+export type BonusType = 'Performance' | 'Annual' | 'Sign-on' | 'Other';
 
 @Entity()
 export class Bonus {
@@ -14,12 +14,12 @@ export class Bonus {
   @Column()
   amount: number;
 
-  @Column({ type: "enum", enum: ["Performance", "Annual", "Sign-on", "Other"] })
+  @Column({ type: 'enum', enum: ['Performance', 'Annual', 'Sign-on', 'Other'] })
   type: BonusType;
 
   @Column({ nullable: true, type: 'bytea' })
   document: Buffer;
 
-  @ManyToOne(() => User, user => user.bonuses)
+  @ManyToOne(() => User, (user) => user.bonuses)
   user: User;
 }
