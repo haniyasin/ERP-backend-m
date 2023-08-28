@@ -3,16 +3,13 @@ import {
   Controller,
   Get,
   Post,
-  Req,
   UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { RolesService } from './roles.service';
 import { Role } from './roles.entity';
-import { Public } from 'src/decorators/public.decorator';
 import { RoleDTO } from './dto/role.dto';
-import { Request } from 'express';
 import { Roles } from './roles.decorator';
 import { RolesName } from './constants';
 import { RolesGuard } from './roles.guard';
@@ -24,7 +21,7 @@ export class RolesController {
   @Roles(RolesName.ADMIN)
   @UseGuards(RolesGuard)
   @Get()
-  async getAll(@Req() request: Request): Promise<Role[]> {
+  async getAll(): Promise<Role[]> {
     return this.rolesService.findAll();
   }
 

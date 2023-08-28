@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { Leave } from './leave.entity';
 import { CreateLeaveDTO } from './dto/create.leave.dto';
 import { User } from 'src/users/user.entity';
-import { getLeaveDaysLeft } from 'src/utils/getLeaveDaysLeft';
 
 @Injectable()
 export class LeaveService {

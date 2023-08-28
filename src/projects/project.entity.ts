@@ -5,8 +5,8 @@ import {
   Column,
   Entity,
   ManyToMany,
-  ManyToOne,
-  OneToMany,
+  // ManyToOne,
+  // OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 

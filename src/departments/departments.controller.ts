@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Post, Get, UseGuards } from '@nestjs/common';
 import { DepartmentsService } from './departments.service';
 import { Department } from './departments.entity';
 import { Roles } from 'src/roles/roles.decorator';
@@ -17,7 +17,7 @@ export class DepartmentsController {
   @Get()
   @Roles(RolesName.ADMIN, RolesName.HR)
   @UseGuards(RolesGuard)
-  getAll(@Req() request: Request): Promise<Department[]> {
+  getAll(): Promise<Department[]> {
     return this.departmentsService.findAll();
   }
 }

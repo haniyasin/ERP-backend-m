@@ -1,5 +1,5 @@
-import { User } from "src/users/user.entity";
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from 'src/users/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Salary {
@@ -13,11 +13,11 @@ export class Salary {
   gross: number;
 
   @Column()
-  net: number
-  
+  net: number;
+
   @Column({ nullable: true, type: 'bytea' })
   document: Buffer;
 
-  @ManyToOne(() => User, user => user.salaries)
+  @ManyToOne(() => User, (user) => user.salaries)
   user: User;
 }
