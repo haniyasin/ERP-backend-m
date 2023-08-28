@@ -1,6 +1,5 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import { log } from 'console';
 import { emailHtmlContent } from 'src/utils/EmailHtmlContent';
 
 @Injectable()

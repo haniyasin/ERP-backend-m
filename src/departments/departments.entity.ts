@@ -3,12 +3,12 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
 export class Department {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({ nullable: true })
-    name: string;
+  @Column({ nullable: true })
+  name: string;
 
-    @ManyToMany(() => User, user => user.departments)
-    users: User[];
+  @ManyToMany(() => User, (user) => user.departments)
+  users: User[];
 }

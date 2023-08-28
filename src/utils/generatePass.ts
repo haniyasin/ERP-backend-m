@@ -1,10 +1,10 @@
 export function generateRandomPassword(): string {
   const length: number = Math.floor(Math.random() * 7) + 10; // Random length between 10 and 16
-  const uppercaseLetters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const lowercaseLetters: string = 'abcdefghijklmnopqrstuvwxyz';
-  const symbols: string = '!@#$%^&*()';
-  const numbers: string = '0123456789';
-  let password: string = '';
+  const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+  const symbols = '!@#$%^&*()';
+  const numbers = '0123456789';
+  let password = '';
 
   // Select one random character from each character set
   const randomUppercase: string = uppercaseLetters.charAt(
