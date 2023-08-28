@@ -11,15 +11,12 @@ export class EmailService {
     try {
       return await this.mailService.sendMail({
         to: toEmail,
-        from:'l.yordanov@deafor.com',
+        from: 'l.yordanov@deafor.com',
         subject: 'About your Registration',
-        html: emailHtmlContent(password)
+        html: emailHtmlContent(password),
       });
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e);
-      
     }
-    
-}
+  }
 }

@@ -20,8 +20,29 @@ import { Projects } from 'src/projects/project.entity';
 import { ProjectsService } from 'src/projects/projects.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Role, Department, Leave, Bonus, Salary, EmployeeDocument, Projects])],
-  providers: [UsersService, EmailService, RolesService, DepartmentsService, LeaveService, BonusService, SalaryService, EmployeeDocumentService, ProjectsService],
-  controllers: [UserController]
+  imports: [
+    TypeOrmModule.forFeature([
+      User,
+      Role,
+      Department,
+      Leave,
+      Bonus,
+      Salary,
+      EmployeeDocument,
+      Projects,
+    ]),
+  ],
+  providers: [
+    UsersService,
+    EmailService,
+    RolesService,
+    DepartmentsService,
+    LeaveService,
+    BonusService,
+    SalaryService,
+    EmployeeDocumentService,
+    ProjectsService,
+  ],
+  controllers: [UserController],
 })
 export class UsersModule {}

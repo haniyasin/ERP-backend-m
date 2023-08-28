@@ -16,7 +16,7 @@ import { UsersService } from './users/user.service';
 import { DepartmentsService } from './departments/departments.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { EmailService } from './email-service/email.service';
-import { RolesModule } from './roles/role.module';
+import { RolesModule } from './roles/roles.module';
 import { RolesController } from './roles/roles.controller';
 import { RolesService } from './roles/roles.service';
 import { BonusModule } from './bonuses/bonus.module';
@@ -39,12 +39,19 @@ import { ProjectsModule } from './projects/projects.module';
 import { Projects } from './projects/project.entity';
 import { ProjectsService } from './projects/projects.service';
 import { ProjectsController } from './projects/projects.controller';
-import { Logger } from 'typeorm';
 
 @Module({
   imports: [
-    UsersModule, DepartmentsModule, AuthModule, RolesModule, DepartmentsModule, BonusModule,
-    LeaveModule, SalaryModule, EmployeeDocumentModule, ProjectsModule,
+    UsersModule,
+    DepartmentsModule,
+    AuthModule,
+    RolesModule,
+    DepartmentsModule,
+    BonusModule,
+    LeaveModule,
+    SalaryModule,
+    EmployeeDocumentModule,
+    ProjectsModule,
     ConfigModule.forRoot(),
     MailerModule.forRoot({
       transport: {
@@ -52,9 +59,18 @@ import { Logger } from 'typeorm';
         auth: {
           user: process.env.SENDGRID_USER,
           pass: process.env.SENDGRID_API_KEY,
-    }}}),
+        },
+      },
+    }),
     TypeOrmModule.forFeature([
-      User, Role, Department, Bonus, Leave, Salary, EmployeeDocument, Projects
+      User,
+      Role,
+      Department,
+      Bonus,
+      Leave,
+      Salary,
+      EmployeeDocument,
+      Projects,
     ]),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -63,17 +79,42 @@ import { Logger } from 'typeorm';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [User, Role, Department, Bonus, Leave, Salary, EmployeeDocument, Projects],
+      entities: [
+        User,
+        Role,
+        Department,
+        Bonus,
+        Leave,
+        Salary,
+        EmployeeDocument,
+        Projects,
+      ],
       synchronize: true,
     }),
-    ],
+  ],
   controllers: [
-    AppController, DepartmentsController, UserController, AuthController, RolesController,
-    BonusController, LeaveController, SalaryController, EmployeeDocumentController, ProjectsController
+    AppController,
+    DepartmentsController,
+    UserController,
+    AuthController,
+    RolesController,
+    BonusController,
+    LeaveController,
+    SalaryController,
+    EmployeeDocumentController,
+    ProjectsController,
   ],
   providers: [
-    AppService, UsersService, DepartmentsService, EmailService, RolesService, BonusService,
-    LeaveService, SalaryService, EmployeeDocumentService, ProjectsService
+    AppService,
+    UsersService,
+    DepartmentsService,
+    EmailService,
+    RolesService,
+    BonusService,
+    LeaveService,
+    SalaryService,
+    EmployeeDocumentService,
+    ProjectsService,
   ],
 })
 export class AppModule {}
