@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Salary } from './salary.entity';
@@ -29,6 +29,8 @@ export class SalaryService {
     document: Express.Multer.File,
     createSalaryDto: CreateSalaryDTO,
   ): Promise<Salary> {
+    if (!document)
+      throw new HttpException('Document is Required!', HttpStatus.BAD_REQUEST);
     const id = createSalaryDto.user.id;
     const user = await this.userRepository.findOne({ where: { id } });
 
