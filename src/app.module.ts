@@ -43,6 +43,14 @@ import { FinanceModule } from './finance/finance.module';
 import { FinanceService } from './finance/finance.service';
 import { FinanceController } from './finance/finance.controller';
 import { Invoice } from './finance/entities/invoice.entity';
+import { PositionsModule } from './positions/positions.module';
+import { Position } from './positions/entities/position.entity';
+import { PositionsController } from './positions/positions.controller';
+import { PositionsService } from './positions/positions.service';
+import { CandidatesModule } from './candidates/candidates.module';
+import { Candidate } from './candidates/entities/candidate.entity';
+import { CandidatesController } from './candidates/candidates.controller';
+import { CandidatesService } from './candidates/candidates.service';
 
 @Module({
   imports: [
@@ -57,6 +65,8 @@ import { Invoice } from './finance/entities/invoice.entity';
     EmployeeDocumentModule,
     ProjectsModule,
     FinanceModule,
+    PositionsModule,
+    CandidatesModule,
     ConfigModule.forRoot(),
     MailerModule.forRoot({
       transport: {
@@ -77,6 +87,8 @@ import { Invoice } from './finance/entities/invoice.entity';
       EmployeeDocument,
       Projects,
       Invoice,
+      Position,
+      Candidate,
     ]),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -95,6 +107,8 @@ import { Invoice } from './finance/entities/invoice.entity';
         EmployeeDocument,
         Projects,
         Invoice,
+        Position,
+        Candidate,
       ],
       synchronize: true,
     }),
@@ -111,6 +125,8 @@ import { Invoice } from './finance/entities/invoice.entity';
     EmployeeDocumentController,
     ProjectsController,
     FinanceController,
+    PositionsController,
+    CandidatesController,
   ],
   providers: [
     AppService,
@@ -124,6 +140,8 @@ import { Invoice } from './finance/entities/invoice.entity';
     EmployeeDocumentService,
     ProjectsService,
     FinanceService,
+    PositionsService,
+    CandidatesService,
   ],
 })
 export class AppModule {}
