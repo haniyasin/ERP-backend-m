@@ -35,7 +35,7 @@ export class User {
   title: string;
 
   @Column()
-  startingDate: Date;
+  startDate: Date;
 
   @Column({ nullable: true })
   isContractor: boolean;

@@ -39,6 +39,10 @@ import { ProjectsModule } from './projects/projects.module';
 import { Projects } from './projects/project.entity';
 import { ProjectsService } from './projects/projects.service';
 import { ProjectsController } from './projects/projects.controller';
+import { FinanceModule } from './finance/finance.module';
+import { FinanceService } from './finance/finance.service';
+import { FinanceController } from './finance/finance.controller';
+import { Invoice } from './finance/entities/invoice.entity';
 
 @Module({
   imports: [
@@ -52,6 +56,7 @@ import { ProjectsController } from './projects/projects.controller';
     SalaryModule,
     EmployeeDocumentModule,
     ProjectsModule,
+    FinanceModule,
     ConfigModule.forRoot(),
     MailerModule.forRoot({
       transport: {
@@ -71,6 +76,7 @@ import { ProjectsController } from './projects/projects.controller';
       Salary,
       EmployeeDocument,
       Projects,
+      Invoice,
     ]),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -88,6 +94,7 @@ import { ProjectsController } from './projects/projects.controller';
         Salary,
         EmployeeDocument,
         Projects,
+        Invoice,
       ],
       synchronize: true,
     }),
@@ -103,6 +110,7 @@ import { ProjectsController } from './projects/projects.controller';
     SalaryController,
     EmployeeDocumentController,
     ProjectsController,
+    FinanceController,
   ],
   providers: [
     AppService,
@@ -115,6 +123,7 @@ import { ProjectsController } from './projects/projects.controller';
     SalaryService,
     EmployeeDocumentService,
     ProjectsService,
+    FinanceService,
   ],
 })
 export class AppModule {}

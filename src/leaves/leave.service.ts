@@ -41,7 +41,7 @@ export class LeaveService {
         'email',
         'title',
         'currentSalary',
-        'startingDate',
+        'startDate',
         'isContractor',
         'departments',
         'picture',
