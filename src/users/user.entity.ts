@@ -1,4 +1,5 @@
 import { Bonus } from 'src/bonuses/bonus.entity';
+import { Candidate } from 'src/candidates/entities/candidate.entity';
 import { Department } from 'src/departments/departments.entity';
 import { EmployeeDocument } from 'src/documents/employee/employee.document.entity';
 import { Leave } from 'src/leaves/leave.entity';
@@ -76,6 +77,10 @@ export class User {
   @OneToOne(() => Projects, { nullable: true })
   @JoinColumn()
   currentProject: Projects;
+
+  @OneToOne(() => Candidate)
+  @JoinColumn()
+  candidate: Candidate | null;
 
   @Column({ default: false })
   hasLeft: boolean;
