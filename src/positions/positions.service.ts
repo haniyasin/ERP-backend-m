@@ -9,15 +9,18 @@ import { Repository, UpdateResult } from 'typeorm';
 export class PositionsService {
   constructor(
     @InjectRepository(Position)
-    private positionsRepository: Repository<Position>
+    private positionsRepository: Repository<Position>,
   ) {}
 
   async create(createPositionDto: CreatePositionDto): Promise<Position> {
     return await this.positionsRepository.save(createPositionDto);
   }
 
-  async edit(id: number, editPositionDto: EditPositionDto): Promise<UpdateResult> {
-    return await this.positionsRepository.update({id}, editPositionDto);;
+  async edit(
+    id: number,
+    editPositionDto: EditPositionDto,
+  ): Promise<UpdateResult> {
+    return await this.positionsRepository.update({ id }, editPositionDto);
   }
 
   async findOne(id: number): Promise<Position> {

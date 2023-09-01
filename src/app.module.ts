@@ -51,6 +51,15 @@ import { CandidatesModule } from './candidates/candidates.module';
 import { Candidate } from './candidates/entities/candidate.entity';
 import { CandidatesController } from './candidates/candidates.controller';
 import { CandidatesService } from './candidates/candidates.service';
+import { CompaniesDocumentsService } from './documents/company/companies.documents.service';
+import { CompaniesService } from './companies/companies.service';
+import { CompaniesDocumentsController } from './documents/company/companies.documents.controller';
+import { CompaniesController } from './companies/companies.controller';
+import { CompaniesModule } from './companies/companies.module';
+import { CompaniesDocuments } from './documents/company/companies.documents.entity';
+import { CompaniesDocumentsModule } from './documents/company/companies.documents.module';
+import { Company } from './companies/company.entity';
+import { Technologies } from './technologies/technologies.entity';
 
 @Module({
   imports: [
@@ -63,10 +72,12 @@ import { CandidatesService } from './candidates/candidates.service';
     LeaveModule,
     SalaryModule,
     EmployeeDocumentModule,
+    CompaniesDocumentsModule,
     ProjectsModule,
     FinanceModule,
     PositionsModule,
     CandidatesModule,
+    CompaniesModule,
     ConfigModule.forRoot(),
     MailerModule.forRoot({
       transport: {
@@ -85,10 +96,13 @@ import { CandidatesService } from './candidates/candidates.service';
       Leave,
       Salary,
       EmployeeDocument,
+      CompaniesDocuments,
       Projects,
       Invoice,
       Position,
       Candidate,
+      Company,
+      Technologies,
     ]),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -105,10 +119,13 @@ import { CandidatesService } from './candidates/candidates.service';
         Leave,
         Salary,
         EmployeeDocument,
+        CompaniesDocuments,
         Projects,
         Invoice,
         Position,
         Candidate,
+        Company,
+        Technologies,
       ],
       synchronize: true,
     }),
@@ -123,10 +140,12 @@ import { CandidatesService } from './candidates/candidates.service';
     LeaveController,
     SalaryController,
     EmployeeDocumentController,
+    CompaniesDocumentsController,
     ProjectsController,
     FinanceController,
     PositionsController,
     CandidatesController,
+    CompaniesController,
   ],
   providers: [
     AppService,
@@ -138,10 +157,12 @@ import { CandidatesService } from './candidates/candidates.service';
     LeaveService,
     SalaryService,
     EmployeeDocumentService,
+    CompaniesDocumentsService,
     ProjectsService,
     FinanceService,
     PositionsService,
     CandidatesService,
+    CompaniesService,
   ],
 })
 export class AppModule {}
