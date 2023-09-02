@@ -27,12 +27,13 @@ export class PositionsService {
     return this.positionsRepository
       .createQueryBuilder('position')
       .leftJoinAndSelect('position.candidates', 'candidates') // Eagerly load the role entity
+      .leftJoinAndSelect('position.project', 'project')
       .where('position.id = :id', { id })
       .getOne();
   }
 
   async findAll(): Promise<Position[]> {
-    return await this.positionsRepository.find();
+    return await this.positionsRepository.find({ relations: ['project'] });
   }
 
   // findOne(id: number) {
