@@ -1,28 +1,17 @@
 import {
-  IsDate,
   IsDateString,
-  IsDecimal,
-  IsEmpty,
   IsEnum,
   IsNotEmpty,
   IsNumber,
   Matches,
-  Min,
+  MinLength,
   Validate,
 } from 'class-validator';
-import { Invoice } from '../entities/invoice.entity';
 import { PaymentType, PaymentMethod } from '../enums';
-import { Unique } from 'typeorm';
 
 export class CreateInvoiceDTO {
-  @IsNumber(
-    { allowNaN: false },
-    { message: 'Provide a valid invoice numeration' },
-  )
-  @Min(1000, {
-    message: 'Invoice number must be greater than or equal to 1000',
-  })
-  invoiceNumber: number;
+  @IsNotEmpty()
+  invoiceNumber: string;
 
   @IsDateString({}, { message: 'Created at should be a valid date' })
   createdAt: Date;
@@ -32,9 +21,6 @@ export class CreateInvoiceDTO {
 
   @IsNotEmpty({ message: 'Category should not be empty' })
   category: string;
-
-  @IsNotEmpty({ message: 'Subcategory should not be empty!' })
-  subcategory: string;
 
   @IsNotEmpty({ message: 'Client should not be empty!' })
   client: string;
@@ -58,7 +44,7 @@ export class CreateInvoiceDTO {
   amountWithoutVat: number;
 
   @IsNotEmpty({ message: 'Vat should not be empty' })
-  @IsNumber({ allowNaN: false }, { message: 'Provide a valid vat percentage' })
+  @IsNumber()
   vat: number;
 
   @IsDateString({}, { message: 'Due date should be a valid date' })

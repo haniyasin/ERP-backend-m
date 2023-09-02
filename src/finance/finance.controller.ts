@@ -43,7 +43,7 @@ export class FinanceController {
   @Roles(RolesName.ADMIN, RolesName.FIN)
   @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
-  async delete(@Body() body: { invoiceNumber: number }): Promise<string> {
+  async delete(@Body() body: { invoiceNumber: string }): Promise<string> {
     await this.financeService.delete(body.invoiceNumber);
     return 'Successfully deleted invoice';
   }

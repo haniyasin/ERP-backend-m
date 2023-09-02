@@ -12,7 +12,7 @@ export class Invoice {
   id: number;
 
   @Column({ unique: true })
-  invoiceNumber: number;
+  invoiceNumber: string;
 
   @CreateDateColumn({ type: 'date' }) //, default: () => 'CURRENT_DATE' })
   createdAt: Date;
@@ -22,9 +22,6 @@ export class Invoice {
 
   @Column()
   category: string;
-
-  @Column()
-  subcategory: string;
 
   @Column()
   client: string;

@@ -13,7 +13,7 @@ export class FinanceService {
 
   async create(invoice: CreateInvoiceDTO): Promise<Invoice> {
     const { invoiceNumber } = invoice;
-    const checkIfExists = await this.invoiceRepository.find({
+    const checkIfExists = await this.invoiceRepository.findOne({
       where: { invoiceNumber },
     });
     if (checkIfExists) {
@@ -39,7 +39,7 @@ export class FinanceService {
   //   return `This action updates a #${id} finance`;
   // }
 
-  async delete(invoiceNumber: number): Promise<void> {
+  async delete(invoiceNumber: string): Promise<void> {
     const invoice = await this.invoiceRepository.findOne({
       where: { invoiceNumber },
     });
