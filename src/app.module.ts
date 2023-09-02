@@ -58,8 +58,12 @@ import { CompaniesController } from './companies/companies.controller';
 import { CompaniesModule } from './companies/companies.module';
 import { CompaniesDocuments } from './documents/company/companies.documents.entity';
 import { CompaniesDocumentsModule } from './documents/company/companies.documents.module';
-import { Company } from './companies/company.entity';
+import { Company } from './companies/entities/company.entity';
 import { Technologies } from './technologies/technologies.entity';
+import { ClientsModule } from './client/client.module';
+import { Client } from './client/entities/client.entity';
+import { ClientsController } from './client/client.controller';
+import { ClientsService } from './client/client.service';
 
 @Module({
   imports: [
@@ -78,6 +82,7 @@ import { Technologies } from './technologies/technologies.entity';
     PositionsModule,
     CandidatesModule,
     CompaniesModule,
+    ClientsModule,
     ConfigModule.forRoot(),
     MailerModule.forRoot({
       transport: {
@@ -103,6 +108,7 @@ import { Technologies } from './technologies/technologies.entity';
       Candidate,
       Company,
       Technologies,
+      Client,
     ]),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -126,6 +132,7 @@ import { Technologies } from './technologies/technologies.entity';
         Candidate,
         Company,
         Technologies,
+        Client,
       ],
       synchronize: true,
     }),
@@ -146,6 +153,7 @@ import { Technologies } from './technologies/technologies.entity';
     PositionsController,
     CandidatesController,
     CompaniesController,
+    ClientsController,
   ],
   providers: [
     AppService,
@@ -163,6 +171,7 @@ import { Technologies } from './technologies/technologies.entity';
     PositionsService,
     CandidatesService,
     CompaniesService,
+    ClientsService,
   ],
 })
 export class AppModule {}

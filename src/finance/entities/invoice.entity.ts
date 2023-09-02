@@ -2,9 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PaymentType, PaymentMethod } from '../enums';
+import { Client } from 'src/client/entities/client.entity';
 
 @Entity()
 export class Invoice {
@@ -23,8 +25,8 @@ export class Invoice {
   @Column()
   category: string;
 
-  @Column()
-  client: string;
+  @ManyToOne(() => Client)
+  client: Client;
 
   @Column({ nullable: true })
   notes: string;

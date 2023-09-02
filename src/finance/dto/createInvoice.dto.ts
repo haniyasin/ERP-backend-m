@@ -8,6 +8,7 @@ import {
   Validate,
 } from 'class-validator';
 import { PaymentType, PaymentMethod } from '../enums';
+import { Client } from 'src/client/entities/client.entity';
 
 export class CreateInvoiceDTO {
   @IsNotEmpty()
@@ -23,7 +24,7 @@ export class CreateInvoiceDTO {
   category: string;
 
   @IsNotEmpty({ message: 'Client should not be empty!' })
-  client: string;
+  client: Client;
 
   @IsNotEmpty({ message: 'Leave a note!' })
   notes: string;

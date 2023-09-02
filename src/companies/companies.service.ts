@@ -1,8 +1,8 @@
 import { Body, Injectable } from '@nestjs/common';
-import { Company } from './company.entity';
+import { Company } from './entities/company.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CompanyDTO } from './company.dto';
+import { CompanyDTO } from './dto/create-company.dto';
 
 @Injectable()
 export class CompaniesService {
