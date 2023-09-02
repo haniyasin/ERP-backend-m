@@ -1,9 +1,9 @@
 import { Bind, Body, Controller, Get, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { CompaniesDocumentsService } from "./companies.documents.service";
-import { CompaniesDocuments } from "./companies.documents.entity";
+import { CompaniesDocuments } from "./entitites/companies.documents.entity";
 import { Public } from "src/decorators/public.decorator";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { CompaniesDocumentsDTO } from "./companies.documents.dto";
+import { CompaniesDocumentsDTO } from "./dto/companies.documents.dto";
 
 @Controller('companiesDocuments')
 export class CompaniesDocumentsController {

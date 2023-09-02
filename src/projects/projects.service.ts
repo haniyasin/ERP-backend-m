@@ -25,6 +25,21 @@ export class ProjectsService {
     return `This action returns a #${id} project`;
   }
 
+  async updateOpenPositions(id: number, numberOfOpenPositions: number) {
+    const project = await this.projectRepository.findOne({ where: { id } });
+
+    if (!project)
+      throw new HttpException(
+        `Project with id: ${id} does not exist`,
+        HttpStatus.BAD_REQUEST,
+      );
+
+    return this.projectRepository.save({
+      ...project,
+      openPositions: numberOfOpenPositions,
+    });
+  }
+
   async update(id: number, userId: number): Promise<Projects> {
     const project = await this.projectRepository.findOne({
       where: { id },

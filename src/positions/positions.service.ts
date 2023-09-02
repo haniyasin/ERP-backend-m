@@ -4,16 +4,40 @@ import { EditPositionDto } from './dto/edit-position.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Position } from './entities/position.entity';
 import { Repository, UpdateResult } from 'typeorm';
+import { CompaniesService } from 'src/companies/companies.service';
+import { ProjectsService } from 'src/projects/projects.service';
 
 @Injectable()
 export class PositionsService {
   constructor(
+    private companiesService: CompaniesService,
+    private projectsService: ProjectsService,
     @InjectRepository(Position)
     private positionsRepository: Repository<Position>,
   ) {}
 
   async create(createPositionDto: CreatePositionDto): Promise<Position> {
-    return await this.positionsRepository.save(createPositionDto);
+    const newPosition = await this.positionsRepository.save({
+      ...createPositionDto,
+      project: { id: createPositionDto.projectId },
+      company: { id: createPositionDto.companyId },
+    });
+
+    const allPositions = await this.positionsRepository.find({
+      where: { company: { id: createPositionDto.companyId } },
+    });
+
+    await this.companiesService.updateOpenPositions(
+      createPositionDto.companyId,
+      allPositions.length,
+    );
+
+    await this.projectsService.updateOpenPositions(
+      createPositionDto.projectId,
+      allPositions.length,
+    );
+
+    return newPosition;
   }
 
   async edit(
@@ -33,7 +57,9 @@ export class PositionsService {
   }
 
   async findAll(): Promise<Position[]> {
-    return await this.positionsRepository.find({ relations: ['project'] });
+    return await this.positionsRepository.find({
+      relations: ['project', 'company'],
+    });
   }
 
   // findOne(id: number) {

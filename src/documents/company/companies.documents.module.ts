@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CompaniesDocumentsService } from "./companies.documents.service";
-import { CompaniesDocuments } from "./companies.documents.entity";
+import { CompaniesDocuments } from "./entitites/companies.documents.entity";
 import { CompaniesDocumentsController } from "./companies.documents.controller";
 
 @Module({

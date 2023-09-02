@@ -56,7 +56,7 @@ import { CompaniesService } from './companies/companies.service';
 import { CompaniesDocumentsController } from './documents/company/companies.documents.controller';
 import { CompaniesController } from './companies/companies.controller';
 import { CompaniesModule } from './companies/companies.module';
-import { CompaniesDocuments } from './documents/company/companies.documents.entity';
+import { CompaniesDocuments } from './documents/company/entitites/companies.documents.entity';
 import { CompaniesDocumentsModule } from './documents/company/companies.documents.module';
 import { Company } from './companies/entities/company.entity';
 import { Technologies } from './technologies/technologies.entity';

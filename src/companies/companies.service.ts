@@ -1,4 +1,9 @@
-import { Body, Injectable } from '@nestjs/common';
+import {
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { Company } from './entities/company.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -30,13 +35,28 @@ export class CompaniesService {
     await this.companyRepository.remove(company);
   }
 
+  async updateOpenPositions(id: number, numberOfOpenPositions: number) {
+    const company = await this.companyRepository.findOne({ where: { id } });
+
+    if (!company)
+      throw new HttpException(
+        `Company with id: ${id} does not exist`,
+        HttpStatus.BAD_REQUEST,
+      );
+
+    return this.companyRepository.save({
+      ...company,
+      openPositions: numberOfOpenPositions,
+    });
+  }
+
   async updateCompany(name: string, updatedData: CompanyDTO): Promise<Company> {
     const company = await this.companyRepository.findOne({ where: { name } });
-    
-    if (!company)
-      throw new Error(`Company with name ${name} not found`);
+
+    if (!company) throw new Error(`Company with name ${name} not found`);
 
     Object.assign(company, updatedData);
 
     return await this.companyRepository.save(company);
-  }}
+  }
+}

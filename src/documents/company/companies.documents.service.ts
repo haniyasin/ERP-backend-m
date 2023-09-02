@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import { CompaniesDocuments } from "./companies.documents.entity";
+import { CompaniesDocuments } from "./entitites/companies.documents.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { CompaniesDocumentsDTO } from "./companies.documents.dto";
+import { CompaniesDocumentsDTO } from "./dto/companies.documents.dto";
 
 @Injectable()
 export class CompaniesDocumentsService {

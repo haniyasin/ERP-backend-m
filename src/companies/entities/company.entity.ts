@@ -1,4 +1,4 @@
-import { CompaniesDocuments } from 'src/documents/company/companies.documents.entity';
+import { CompaniesDocuments } from 'src/documents/company/entitites/companies.documents.entity';
 import { Position } from 'src/positions/entities/position.entity';
 import { Projects } from 'src/projects/project.entity';
 import { Technologies } from 'src/technologies/technologies.entity';
@@ -21,7 +21,7 @@ export class Company {
   @Column()
   employeeSize: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, default: 0 })
   openPositions: number;
 
   @OneToMany(() => Position, (positions) => positions.company)

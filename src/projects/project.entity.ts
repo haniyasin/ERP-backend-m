@@ -18,7 +18,7 @@ export class Projects {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true, default: 0 })
   openPositions: number;
 
   @OneToMany(() => Position, (position) => position.project)
