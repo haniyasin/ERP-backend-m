@@ -1,14 +1,12 @@
-import { Department } from 'src/departments/departments.entity';
-import { Role } from 'src/roles/roles.entity';
+import { Department } from 'src/departments/entities/departments.entity';
 import {
   IsNotEmpty,
   IsEmail,
   MaxLength,
   ValidateNested,
 } from 'class-validator';
-import { CreateSalaryDTO } from 'src/salary/dto/create.salary.dto';
 
-export class CreateUserDTO {
+export class EditUserDTO {
   @IsNotEmpty()
   @MaxLength(30, { message: 'Full name exceeds limit' })
   fullName: string;
@@ -18,7 +16,6 @@ export class CreateUserDTO {
   email: string;
 
   @IsNotEmpty()
-  @MaxLength(30, { message: 'Title exceeds limit' })
   title: string;
 
   @IsNotEmpty()
@@ -27,12 +24,6 @@ export class CreateUserDTO {
   @IsNotEmpty()
   isContractor: boolean;
 
-  @IsNotEmpty()
-  salary: CreateSalaryDTO;
-
   @ValidateNested()
   departments: Department[];
-
-  @ValidateNested()
-  role: Role;
 }

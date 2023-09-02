@@ -1,5 +1,5 @@
 import { Position } from 'src/positions/entities/position.entity';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   Entity,

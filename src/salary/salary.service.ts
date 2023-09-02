@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Salary } from './salary.entity';
-import { CreateSalaryDTO } from './dto/create.salary.dto';
-import { User } from 'src/users/user.entity';
+import { Salary } from './entities/salary.entity';
+import { CreateSalaryDTO } from './dto/create-salary.dto';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class SalaryService {

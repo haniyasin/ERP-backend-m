@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { RolesName } from 'src/roles/constants';
 import { BonusService } from './bonus.service';
-import { Bonus } from './bonus.entity';
+import { Bonus } from './entitites/bonus.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
 import { CreateBonusDTO } from './dto/create.bonus.dto';

@@ -8,11 +8,11 @@ import {
   Put,
 } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
-import { Projects } from './project.entity';
+import { Projects } from './entities/project.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
 import { RolesName } from 'src/roles/constants';
-import { UpdateProjectDTO } from './dto/update.project.dto';
+import { UpdateProjectDTO } from './dto/update-project.dto';
 
 @Controller('projects')
 export class ProjectsController {

@@ -10,7 +10,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { RolesName } from 'src/roles/constants';
-import { EmployeeDocument } from './employee.document.entity';
+import { EmployeeDocument } from './entities/employee.document.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
 import { EmployeeDocumentService } from './employee.document.service';

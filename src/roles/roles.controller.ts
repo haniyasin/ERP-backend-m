@@ -8,7 +8,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { RolesService } from './roles.service';
-import { Role } from './roles.entity';
+import { Role } from './entities/roles.entity';
 import { RoleDTO } from './dto/role.dto';
 import { Roles } from './roles.decorator';
 import { RolesName } from './constants';

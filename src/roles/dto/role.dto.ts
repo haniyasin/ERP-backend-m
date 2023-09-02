@@ -1,5 +1,5 @@
 import { IsNotEmpty, MaxLength, MinLength } from 'class-validator';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/entities/user.entity';
 
 export class RoleDTO {
   @IsNotEmpty()

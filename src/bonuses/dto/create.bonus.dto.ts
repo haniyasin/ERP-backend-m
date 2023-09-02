@@ -1,6 +1,6 @@
 import { IsNotEmpty, ValidateNested } from 'class-validator';
-import { User } from 'src/users/user.entity';
-import { BonusType } from '../bonus.entity';
+import { User } from 'src/users/entities/user.entity';
+import { BonusType } from '../entitites/bonus.entity';
 
 export class CreateBonusDTO {
   @IsNotEmpty()

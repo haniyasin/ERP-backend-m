@@ -6,9 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Candidate } from 'src/candidates/entities/candidate.entity';
 import { CompaniesService } from 'src/companies/companies.service';
 import { Company } from 'src/companies/entities/company.entity';
-import { Projects } from 'src/projects/project.entity';
+import { Projects } from 'src/projects/entities/project.entity';
 import { ProjectsService } from 'src/projects/projects.service';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Module({
   imports: [

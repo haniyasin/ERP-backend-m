@@ -1,6 +1,6 @@
 import { Candidate } from 'src/candidates/entities/candidate.entity';
 import { Company } from 'src/companies/entities/company.entity';
-import { Projects } from 'src/projects/project.entity';
+import { Projects } from 'src/projects/entities/project.entity';
 import {
   Column,
   Entity,

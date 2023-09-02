@@ -1,11 +1,11 @@
-import { Bonus } from 'src/bonuses/bonus.entity';
+import { Bonus } from 'src/bonuses/entitites/bonus.entity';
 import { Candidate } from 'src/candidates/entities/candidate.entity';
-import { Department } from 'src/departments/departments.entity';
-import { EmployeeDocument } from 'src/documents/employee/employee.document.entity';
-import { Leave } from 'src/leaves/leave.entity';
-import { Projects } from 'src/projects/project.entity';
-import { Role } from 'src/roles/roles.entity';
-import { Salary } from 'src/salary/salary.entity';
+import { Department } from 'src/departments/entities/departments.entity';
+import { EmployeeDocument } from 'src/documents/employee/entities/employee.document.entity';
+import { Leave } from 'src/leaves/entities/leave.entity';
+import { Projects } from 'src/projects/entities/project.entity';
+import { Role } from 'src/roles/entities/roles.entity';
+import { Salary } from 'src/salary/entities/salary.entity';
 import {
   Entity,
   Column,

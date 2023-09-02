@@ -11,10 +11,10 @@ import {
 } from '@nestjs/common';
 import { RolesName } from 'src/roles/constants';
 import { LeaveService } from './leave.service';
-import { Leave } from './leave.entity';
+import { Leave } from './entities/leave.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
-import { CreateLeaveDTO } from './dto/create.leave.dto';
+import { CreateLeaveDTO } from './dto/create-leave.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('leaves')

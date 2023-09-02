@@ -12,7 +12,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { FinanceService } from './finance.service';
-import { CreateInvoiceDTO } from './dto/createInvoice.dto';
+import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
 import { Invoice } from './entities/invoice.entity';

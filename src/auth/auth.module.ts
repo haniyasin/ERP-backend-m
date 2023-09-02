@@ -6,19 +6,19 @@ import { AuthController } from './auth.controller';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { jwtConstants } from './constants';
-import { UsersService } from 'src/users/user.service';
+import { UsersService } from 'src/users/users.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/entities/user.entity';
 import { EmailService } from 'src/email-service/email.service';
 import { RolesService } from 'src/roles/roles.service';
-import { Role } from 'src/roles/roles.entity';
-import { Department } from 'src/departments/departments.entity';
-import { Leave } from 'src/leaves/leave.entity';
-import { Salary } from 'src/salary/salary.entity';
-import { Bonus } from 'src/bonuses/bonus.entity';
+import { Role } from 'src/roles/entities/roles.entity';
+import { Department } from 'src/departments/entities/departments.entity';
+import { Leave } from 'src/leaves/entities/leave.entity';
+import { Salary } from 'src/salary/entities/salary.entity';
+import { Bonus } from 'src/bonuses/entitites/bonus.entity';
 import { SalaryService } from 'src/salary/salary.service';
 import { EmployeeDocumentService } from 'src/documents/employee/employee.document.service';
-import { EmployeeDocument } from 'src/documents/employee/employee.document.entity';
+import { EmployeeDocument } from 'src/documents/employee/entities/employee.document.entity';
 
 @Module({
   imports: [

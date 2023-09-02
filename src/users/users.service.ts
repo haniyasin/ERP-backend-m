@@ -1,19 +1,19 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Not, Repository } from 'typeorm';
-import { CreateUserDTO } from './dto/create.user.dto';
+import { CreateUserDTO } from './dto/create-user.dto';
 import { generateRandomPassword } from 'src/utils/generatePass';
 import { hashPass } from 'src/utils/hashPass';
 import { EmailService } from 'src/email-service/email.service';
 import { registerDto } from 'src/auth/dto/auth.register.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { validatePassword } from 'src/utils/isValidPassword';
-import { Department } from 'src/departments/departments.entity';
-import { EditUserDTO } from './dto/edit.user.dto';
+import { Department } from 'src/departments/entities/departments.entity';
+import { EditUserDTO } from './dto/edit-user.dto';
 import { SalaryService } from 'src/salary/salary.service';
 import { getLeaveDaysLeft } from 'src/utils/getLeaveDaysLeft';
-import { DeleteUserDTO } from './dto/delete.user.dto';
+import { DeleteUserDTO } from './dto/delete-user.dto';
 import { EmployeeDocumentService } from 'src/documents/employee/employee.document.service';
 
 @Injectable()

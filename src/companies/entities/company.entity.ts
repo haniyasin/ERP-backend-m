@@ -1,7 +1,7 @@
 import { CompaniesDocuments } from 'src/documents/company/entitites/companies.documents.entity';
 import { Position } from 'src/positions/entities/position.entity';
-import { Projects } from 'src/projects/project.entity';
-import { Technologies } from 'src/technologies/technologies.entity';
+import { Projects } from 'src/projects/entities/project.entity';
+import { Technologies } from 'src/technologies/entities/technology.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

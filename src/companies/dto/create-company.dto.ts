@@ -1,6 +1,6 @@
 import { IsNotEmpty, MaxLength, IsEmail, IsPositive, ValidateNested, MinLength } from "class-validator";
-import { Department } from "src/departments/departments.entity";
-import { Role } from "src/roles/roles.entity";
+import { Department } from "src/departments/entities/departments.entity";
+import { Role } from "src/roles/entities/roles.entity";
 import { PrimaryGeneratedColumn, Unique } from "typeorm";
 
 export class CompanyDTO {

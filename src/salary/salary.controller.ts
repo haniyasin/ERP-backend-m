@@ -11,10 +11,10 @@ import {
 } from '@nestjs/common';
 import { RolesName } from 'src/roles/constants';
 import { SalaryService } from './salary.service';
-import { Salary } from './salary.entity';
+import { Salary } from './entities/salary.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
-import { CreateSalaryDTO } from './dto/create.salary.dto';
+import { CreateSalaryDTO } from './dto/create-salary.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('salaries')

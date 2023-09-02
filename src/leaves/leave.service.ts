@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Leave } from './leave.entity';
-import { CreateLeaveDTO } from './dto/create.leave.dto';
-import { User } from 'src/users/user.entity';
+import { Leave } from './entities/leave.entity';
+import { CreateLeaveDTO } from './dto/create-leave.dto';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class LeaveService {

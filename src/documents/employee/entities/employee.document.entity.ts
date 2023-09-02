@@ -1,23 +1,23 @@
-import { User } from 'src/users/user.entity';
+import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Salary {
+export class EmployeeDocument {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  startDate: Date;
+  name: string;
 
   @Column()
-  gross: number;
+  dateOfUpload: Date;
 
   @Column()
-  net: number;
+  documentType: string;
 
   @Column({ nullable: true, type: 'bytea' })
   document: Buffer;
 
-  @ManyToOne(() => User, (user) => user.salaries)
+  @ManyToOne(() => User, (user) => user.documents)
   user: User;
 }

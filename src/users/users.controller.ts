@@ -16,21 +16,21 @@ import {
   HttpStatus,
   Req,
 } from '@nestjs/common';
-import { UsersService } from './user.service';
+import { UsersService } from './users.service';
 import { Public } from 'src/decorators/public.decorator';
-import { CreateUserDTO } from './dto/create.user.dto';
+import { CreateUserDTO } from './dto/create-user.dto';
 import { RolesName } from 'src/roles/constants';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
-import { User } from './user.entity';
-import { EditUserDTO } from './dto/edit.user.dto';
+import { User } from './entities/user.entity';
+import { EditUserDTO } from './dto/edit-user.dto';
 import {
   FileFieldsInterceptor,
   FileInterceptor,
 } from '@nestjs/platform-express';
 import { jwtConstants } from 'src/auth/constants';
 import * as jwt from 'jsonwebtoken';
-import { DeleteUserDTO } from './dto/delete.user.dto';
+import { DeleteUserDTO } from './dto/delete-user.dto';
 
 @Controller('users')
 export class UserController {
