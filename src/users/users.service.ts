@@ -11,10 +11,10 @@ import { RolesService } from 'src/roles/roles.service';
 import { validatePassword } from 'src/utils/isValidPassword';
 import { Department } from 'src/departments/entities/departments.entity';
 import { EditUserDTO } from './dto/edit-user.dto';
-import { SalaryService } from 'src/salary/salary.service';
+import { SalaryService } from 'src/salaries/salaries.service';
 import { getLeaveDaysLeft } from 'src/utils/getLeaveDaysLeft';
 import { DeleteUserDTO } from './dto/delete-user.dto';
-import { EmployeeDocumentService } from 'src/documents/employee/employee.document.service';
+import { EmployeeDocumentService } from 'src/documents/employee/employee-documents.service';
 
 @Injectable()
 export class UsersService {

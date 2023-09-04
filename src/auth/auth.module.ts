@@ -11,14 +11,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { EmailService } from 'src/email-service/email.service';
 import { RolesService } from 'src/roles/roles.service';
-import { Role } from 'src/roles/entities/roles.entity';
+import { Role } from 'src/roles/entities/role.entity';
 import { Department } from 'src/departments/entities/departments.entity';
 import { Leave } from 'src/leaves/entities/leave.entity';
-import { Salary } from 'src/salary/entities/salary.entity';
+import { Salary } from 'src/salaries/entities/salary.entity';
 import { Bonus } from 'src/bonuses/entitites/bonus.entity';
-import { SalaryService } from 'src/salary/salary.service';
-import { EmployeeDocumentService } from 'src/documents/employee/employee.document.service';
-import { EmployeeDocument } from 'src/documents/employee/entities/employee.document.entity';
+import { SalaryService } from 'src/salaries/salaries.service';
+import { EmployeeDocumentService } from 'src/documents/employee/employee-documents.service';
+import { EmployeeDocument } from 'src/documents/employee/entities/employee-document.entity';
 
 @Module({
   imports: [

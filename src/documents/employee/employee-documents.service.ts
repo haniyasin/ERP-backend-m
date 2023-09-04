@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { EmployeeDocument } from './entities/employee.document.entity';
-import { CreateEmployeeDocumentDTO } from './dtos/create.employee.document.dto';
+import { EmployeeDocument } from './entities/employee-document.entity';
+import { CreateEmployeeDocumentDTO } from './dtos/create-employee-document.dto';
 import { User } from 'src/users/entities/user.entity';
 import * as path from 'path';
 

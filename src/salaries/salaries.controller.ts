@@ -10,22 +10,22 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { RolesName } from 'src/roles/constants';
-import { BonusService } from './bonus.service';
-import { Bonus } from './entitites/bonus.entity';
+import { SalaryService } from './salaries.service';
+import { Salary } from './entities/salary.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
-import { CreateBonusDTO } from './dto/create.bonus.dto';
+import { CreateSalaryDTO } from './dto/create-salary.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('bonuses')
-export class BonusController {
-  constructor(private bonusService: BonusService) {}
+@Controller('salaries')
+export class SalaryController {
+  constructor(private salaryService: SalaryService) {}
 
   @Get(':id')
   @Roles(RolesName.ADMIN, RolesName.HR)
   @UseGuards(RolesGuard)
-  async getAll(@Param() user: { id: number }): Promise<Bonus[] | null> {
-    return await this.bonusService.getAllBonuses(user.id);
+  async getAll(@Param() body: { id: number }): Promise<Salary[] | null> {
+    return await this.salaryService.getAllSalaries(body.id);
   }
 
   @Post()
@@ -33,10 +33,10 @@ export class BonusController {
   @UseGuards(RolesGuard)
   @UseInterceptors(FileInterceptor('document'))
   @Bind(UploadedFile())
-  async createBonus(
+  async createSalary(
     @UploadedFile() document: Express.Multer.File,
-    @Body() createBonusDto: CreateBonusDTO,
-  ): Promise<Bonus> {
-    return await this.bonusService.createNewBonus(document, createBonusDto);
+    @Body() createSalaryDTO: CreateSalaryDTO,
+  ): Promise<Salary> {
+    return await this.salaryService.createNewSalary(document, createSalaryDTO);
   }
 }

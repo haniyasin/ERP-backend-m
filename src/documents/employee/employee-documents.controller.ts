@@ -10,11 +10,11 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { RolesName } from 'src/roles/constants';
-import { EmployeeDocument } from './entities/employee.document.entity';
+import { EmployeeDocument } from './entities/employee-document.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
-import { EmployeeDocumentService } from './employee.document.service';
-import { CreateEmployeeDocumentDTO } from './dtos/create.employee.document.dto';
+import { EmployeeDocumentService } from './employee-documents.service';
+import { CreateEmployeeDocumentDTO } from './dtos/create-employee-document.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('employee/documents')

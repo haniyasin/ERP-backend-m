@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PaymentType, PaymentMethod } from '../enums';
-import { Client } from 'src/client/entities/client.entity';
+import { Client } from 'src/clients/entities/client.entity';
 
 @Entity()
 export class Invoice {
@@ -16,7 +16,7 @@ export class Invoice {
   @Column({ unique: true })
   invoiceNumber: string;
 
-  @CreateDateColumn({ type: 'date' }) //, default: () => 'CURRENT_DATE' })
+  @CreateDateColumn({ type: 'date' })
   createdAt: Date;
 
   @Column({ type: 'enum', enum: PaymentType })
@@ -34,7 +34,7 @@ export class Invoice {
   @Column()
   currency: string;
 
-  @Column({ scale: 2 }) //2 digits after decimal point
+  @Column({ scale: 2 })
   amountWithVat: number;
 
   @Column({ scale: 2 })

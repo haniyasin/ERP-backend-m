@@ -10,7 +10,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { RolesName } from 'src/roles/constants';
-import { LeaveService } from './leave.service';
+import { LeaveService } from './leaves.service';
 import { Leave } from './entities/leave.entity';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';

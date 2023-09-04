@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Salary } from './entities/salary.entity';
-import { SalaryService } from './salary.service';
-import { SalaryController } from './salary.controller';
+import { SalaryService } from './salaries.service';
+import { SalaryController } from './salaries.controller';
 import { User } from 'src/users/entities/user.entity';
 
 @Module({

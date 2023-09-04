@@ -1,12 +1,12 @@
 import { Department } from 'src/departments/entities/departments.entity';
-import { Role } from 'src/roles/entities/roles.entity';
+import { Role } from 'src/roles/entities/role.entity';
 import {
   IsNotEmpty,
   IsEmail,
   MaxLength,
   ValidateNested,
 } from 'class-validator';
-import { CreateSalaryDTO } from 'src/salary/dto/create-salary.dto';
+import { CreateSalaryDTO } from 'src/salaries/dto/create-salary.dto';
 
 export class CreateUserDTO {
   @IsNotEmpty()

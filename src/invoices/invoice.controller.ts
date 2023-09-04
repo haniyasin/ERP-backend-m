@@ -10,7 +10,7 @@ import {
   Param,
   Put,
 } from '@nestjs/common';
-import { FinanceService } from './finance.service';
+import { FinanceService } from './invoice.service';
 import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';

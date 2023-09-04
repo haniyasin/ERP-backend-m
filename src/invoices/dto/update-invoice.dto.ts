@@ -1,14 +1,8 @@
-import {
-  IsDateString,
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-} from 'class-validator';
+import { IsDateString, IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
 import { PaymentType, PaymentMethod } from '../enums';
-import { Client } from 'src/client/entities/client.entity';
+import { Client } from 'src/clients/entities/client.entity';
 
-export class CreateInvoiceDTO {
+export class EditInvoiceDTO {
   @IsNotEmpty()
   invoiceNumber: string;
 
@@ -24,22 +18,16 @@ export class CreateInvoiceDTO {
   @IsNotEmpty({ message: 'Client should not be empty!' })
   client: Client;
 
-  @IsNotEmpty({ message: 'Leave a note!' })
+  @IsNotEmpty({ message: 'Please Leave a note!' })
   notes: string;
 
   @IsNotEmpty({ message: 'Currency should not be empty' })
   currency: string;
 
   @IsNumber({}, { message: 'Amount with vat must be a valid number' })
-  // @Validate((value) => /^-?\d+(\.\d{2})$/.test(value.toString()), {
-  // message: 'amountWithVat Invalid format! Must be a number with exactly two decimal places!',})
-  //THERE SHOULD BE A VALIDATAION FOR THE 2 places after the comma
-  // @IsDecimal({ decimal_digits: '1,3' }, { message: 'Amount with vat must be a valid number' })
   amountWithVat: number;
 
   @IsNumber({}, { message: 'The amount without vat must be a number' })
-  //@Validate((value) => /^\d+(\.\d{2})$/.test(value), {
-  //message: 'Amount with no vat must be a number with exactly two decimal places!',})
   amountWithoutVat: number;
 
   @IsNotEmpty({ message: 'Vat should not be empty' })
@@ -49,7 +37,7 @@ export class CreateInvoiceDTO {
   @IsDateString({}, { message: 'Due date should be a valid date' })
   dueDate: Date;
 
-  @IsOptional()
+  @IsDateString({}, { message: 'Payment made on should be a valid date' })
   paymentMadeOn: Date;
 
   @IsEnum(PaymentMethod, { message: 'Invalid payment method' })

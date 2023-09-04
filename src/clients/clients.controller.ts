@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
-import { ClientsService } from './client.service';
+import { ClientsService } from './clients.service';
 import { Public } from 'src/decorators/public.decorator';
 import { CreateClientDTO } from './dto/create-client.dto';
 import { Client } from './entities/client.entity';
