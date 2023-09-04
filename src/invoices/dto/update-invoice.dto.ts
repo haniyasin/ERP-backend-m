@@ -1,4 +1,10 @@
-import { IsDateString, IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
+import {
+  IsDateString,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+} from 'class-validator';
 import { PaymentType, PaymentMethod } from '../enums';
 import { Client } from 'src/clients/entities/client.entity';
 
@@ -37,6 +43,7 @@ export class EditInvoiceDTO {
   @IsDateString({}, { message: 'Due date should be a valid date' })
   dueDate: Date;
 
+  @IsOptional()
   @IsDateString({}, { message: 'Payment made on should be a valid date' })
   paymentMadeOn: Date;
 
