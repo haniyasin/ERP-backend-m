@@ -1,8 +1,18 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { Public } from 'src/decorators/public.decorator';
-import { CompanyDTO } from './dto/create-company.dto';
+import { CreateCompanyDTO } from './dto/create-company.dto';
 import { Company } from './entities/company.entity';
+import { UpdateResult } from 'typeorm';
+import { UpdateCompanyDTO } from './dto/update-company.dto';
 
 @Controller('companies')
 export class CompaniesController {
@@ -10,29 +20,32 @@ export class CompaniesController {
 
   @Public()
   @Get()
-  async getAll(): Promise<Company[]> {
-    const companies = await this.companiesService.getAll();
-    return companies;
+  getAll(): Promise<Company[]> {
+    return this.companiesService.getAll();
   }
 
   @Public()
-  @Post('addCompany')
-  async create(@Body() company: CompanyDTO): Promise<Company> {
-    return await this.companiesService.create(company);
+  @Get(':id')
+  getOneById(@Param('id') id: number): Promise<Company> {
+    return this.companiesService.getOneById(id);
   }
 
-  
+  @Public()
+  @Post()
+  create(@Body() createCompanyDTO: CreateCompanyDTO): Promise<Company> {
+    return this.companiesService.create(createCompanyDTO);
+  }
+
   @Delete()
-  async deleteCompanyByName(@Body('name') name: string): Promise<string> {
-    await this.companiesService.removeCompany(name);
-    return 'Company Deleted successfuly'
-  } 
+  deleteCompanyByName(@Body('name') name: string): Promise<UpdateResult> {
+    return this.companiesService.removeCompany(name);
+  }
 
-  @Put()
-  async editCompany(@Param('name') name: string, @Body() CompanyDTO: CompanyDTO): Promise<Company> {
-    return await this.companiesService.updateCompany(name, CompanyDTO);
-}  
-
-
-
+  @Put(':id')
+  editCompany(
+    @Param('id') id: number,
+    @Body() updateCompanyDTO: { data: UpdateCompanyDTO },
+  ): Promise<Company> {
+    return this.companiesService.updateCompany(id, updateCompanyDTO.data);
+  }
 }

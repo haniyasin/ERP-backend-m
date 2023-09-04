@@ -1,4 +1,11 @@
-import { IsNotEmpty, MaxLength } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  MaxLength,
+  ValidateNested,
+} from 'class-validator';
+import { Company } from 'src/companies/entities/company.entity';
+import { Projects } from 'src/projects/entities/project.entity';
 
 export class CreatePositionDto {
   @IsNotEmpty()
@@ -8,9 +15,14 @@ export class CreatePositionDto {
   @IsNotEmpty()
   description: string;
 
-  @IsNotEmpty()
-  projectId: number;
+  @IsOptional()
+  isVacant: boolean;
 
   @IsNotEmpty()
-  companyId: number;
+  @ValidateNested()
+  project: Projects;
+
+  @IsNotEmpty()
+  @ValidateNested()
+  company: Company;
 }

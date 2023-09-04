@@ -1,13 +1,9 @@
-import {
-  HttpCode,
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Company } from './entities/company.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { CompanyDTO } from './dto/create-company.dto';
+import { Repository, UpdateResult } from 'typeorm';
+import { CreateCompanyDTO } from './dto/create-company.dto';
+import { UpdateCompanyDTO } from './dto/update-company.dto';
 
 @Injectable()
 export class CompaniesService {
@@ -16,23 +12,28 @@ export class CompaniesService {
     private companyRepository: Repository<Company>,
   ) {}
 
-  async create(company: CompanyDTO): Promise<Company> {
-    return await this.companyRepository.save(company);
+  create(company: CreateCompanyDTO): Promise<Company> {
+    return this.companyRepository.save(company);
   }
 
-  async getAll(): Promise<Company[]> {
-    const companies = await this.companyRepository.find();
-    return companies;
+  getAll(): Promise<Company[]> {
+    return this.companyRepository.find({
+      relations: ['projects', 'positions'],
+    });
   }
 
-  async getOne(name: string): Promise<Company> {
-    return await this.companyRepository.findOne({ where: { name } });
+  getOneById(id: number): Promise<Company> {
+    return this.companyRepository.findOne({
+      relations: ['projects', 'positions'],
+      where: { id },
+    });
   }
 
-  async removeCompany(name: string): Promise<void> {
-    const company = await this.getOne(name);
+  async removeCompany(name: string): Promise<UpdateResult> {
+    const company = await this.companyRepository.findOne({ where: { name } });
     if (!company) throw new Error(`Company with name ${name} not found`);
-    await this.companyRepository.remove(company);
+
+    return this.companyRepository.softDelete(company.id);
   }
 
   async updateOpenPositions(id: number, numberOfOpenPositions: number) {
@@ -50,13 +51,23 @@ export class CompaniesService {
     });
   }
 
-  async updateCompany(name: string, updatedData: CompanyDTO): Promise<Company> {
-    const company = await this.companyRepository.findOne({ where: { name } });
+  async updateCompany(
+    id: number,
+    updateCompanyDTO: UpdateCompanyDTO,
+  ): Promise<Company> {
+    const company = await this.companyRepository.findOne({
+      where: { id },
+      relations: ['projects'],
+    });
 
-    if (!company) throw new Error(`Company with name ${name} not found`);
+    if (!company)
+      throw new HttpException(
+        `Company with id ${id} not found`,
+        HttpStatus.BAD_REQUEST,
+      );
 
-    Object.assign(company, updatedData);
+    Object.assign(company, updateCompanyDTO);
 
-    return await this.companyRepository.save(company);
+    return this.companyRepository.save(company);
   }
 }

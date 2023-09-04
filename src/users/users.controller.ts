@@ -101,11 +101,11 @@ export class UserController {
   @UseGuards(RolesGuard)
   @UseInterceptors(FileInterceptor('document'))
   @Bind(UploadedFile())
-  async deleteUser(
+  deleteUser(
     @UploadedFile() document: Express.Multer.File,
     @Body() deleteUserDto: DeleteUserDTO,
-  ): Promise<User> {
-    return await this.usersService.deleteUserByEmail(document, deleteUserDto);
+  ) {
+    return this.usersService.deleteUserByEmail(document, deleteUserDto);
   }
 
   @Post('createUser')

@@ -2,7 +2,13 @@ import { CompaniesDocuments } from 'src/documents/company/entitites/companies.do
 import { Position } from 'src/positions/entities/position.entity';
 import { Projects } from 'src/projects/entities/project.entity';
 import { Technologies } from 'src/technologies/entities/technology.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Company {
@@ -16,7 +22,7 @@ export class Company {
   description: string;
 
   @Column({ type: 'simple-array' })
-  contacts: string[];
+  contacts: string;
 
   @Column()
   employeeSize: number;
@@ -35,4 +41,7 @@ export class Company {
 
   @OneToMany(() => CompaniesDocuments, (documents) => documents.company)
   documents: CompaniesDocuments[];
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 }

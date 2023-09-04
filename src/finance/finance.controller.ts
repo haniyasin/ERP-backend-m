@@ -3,12 +3,11 @@ import {
   Get,
   Post,
   Body,
-  Patch,
-  Param,
   Delete,
   UseGuards,
   UsePipes,
   ValidationPipe,
+  Param,
   Put,
 } from '@nestjs/common';
 import { FinanceService } from './finance.service';
@@ -16,8 +15,9 @@ import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { Roles } from 'src/roles/roles.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
 import { Invoice } from './entities/invoice.entity';
-import { Public } from 'src/decorators/public.decorator';
 import { RolesName } from 'src/roles/constants';
+import { EditInvoiceDTO } from './dto/update-invoice.dto';
+import { UpdateResult } from 'typeorm';
 
 @Controller('invoices')
 export class FinanceController {
@@ -31,28 +31,30 @@ export class FinanceController {
     return this.financeService.findAll();
   }
 
-  @Post('createInvoice')
+  @Post()
   @Roles(RolesName.ADMIN, RolesName.FIN)
   @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
-  async create(@Body() invoice: CreateInvoiceDTO): Promise<Invoice> {
-    return await this.financeService.create(invoice);
+  create(@Body() invoice: CreateInvoiceDTO): Promise<Invoice> {
+    return this.financeService.create(invoice);
   }
 
-  @Delete('deleteInvoice')
+  @Delete()
   @Roles(RolesName.ADMIN, RolesName.FIN)
   @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
-  async delete(@Body() body: { invoiceNumber: string }): Promise<string> {
-    await this.financeService.delete(body.invoiceNumber);
-    return 'Successfully deleted invoice';
+  delete(@Body() body: { invoiceNumber: string }): Promise<Invoice> {
+    return this.financeService.delete(body.invoiceNumber);
   }
 
-  // @Put('updateInvoice/:id')
-  // @Roles(RolesName.ADMIN, RolesName.HR)
-  // @UseGuards(RolesGuard)
-  // @UsePipes(new ValidationPipe())
-  // async editUser(@Param('id') id: number, @Body() editUserDto: EditUserDTO): Promise<User> {
-  //     return await this.usersService.updateUser(id, editUserDto);
-  // }
+  @Put(':id')
+  @Roles(RolesName.ADMIN, RolesName.HR)
+  @UseGuards(RolesGuard)
+  @UsePipes(new ValidationPipe())
+  editUser(
+    @Param('id') id: number,
+    @Body() editInvoiceDto: EditInvoiceDTO,
+  ): Promise<UpdateResult> {
+    return this.financeService.updateInvoice(id, editInvoiceDto);
+  }
 }

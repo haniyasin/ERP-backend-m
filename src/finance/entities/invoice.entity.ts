@@ -46,7 +46,7 @@ export class Invoice {
   @CreateDateColumn({ type: 'date' })
   dueDate: Date;
 
-  @CreateDateColumn({ type: 'date' })
+  @CreateDateColumn({ nullable: true, type: 'date' })
   paymentMadeOn: Date;
 
   @Column({ type: 'enum', enum: PaymentMethod })

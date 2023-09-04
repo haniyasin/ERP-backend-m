@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   UseGuards,
@@ -18,14 +17,15 @@ import { RolesGuard } from 'src/roles/roles.guard';
 import { Position } from './entities/position.entity';
 import { EditPositionDto } from './dto/edit-position.dto';
 import { UpdateResult } from 'typeorm';
-import { Public } from 'src/decorators/public.decorator';
 import { RolesName } from 'src/roles/constants';
+import { DeletePositionDTO } from './dto/delete-position,dto';
+import { Public } from 'src/decorators/public.decorator';
 
 @Controller('positions')
 export class PositionsController {
   constructor(private readonly positionsService: PositionsService) {}
 
-  @Post('createPosition')
+  @Post()
   @Roles(RolesName.ADMIN, RolesName.HR)
   @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
@@ -51,11 +51,28 @@ export class PositionsController {
     return await this.positionsService.findAll();
   }
 
-  @Get('positionById/:id')
+  @Public()
+  @Get('byCompany/:id')
+  getAllByCompany(@Param('id') id: number): Promise<Position[]> {
+    return this.positionsService.getAllByCompany(id);
+  }
+
+  @Get(':id')
   @Roles(RolesName.ADMIN, RolesName.HR)
   @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
   async getUserById(@Param('id') id: number): Promise<Position> {
     return await this.positionsService.findOne(id);
+  }
+
+  @Delete(':id')
+  @Roles(RolesName.ADMIN, RolesName.HR)
+  @UseGuards(RolesGuard)
+  @UsePipes(new ValidationPipe())
+  deletePositionById(
+    @Param('id') id: number,
+    @Body() deletePositionDto: DeletePositionDTO,
+  ) {
+    return this.positionsService.deletePositionById(id, deletePositionDto);
   }
 }

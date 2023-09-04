@@ -3,6 +3,7 @@ import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Invoice } from './entities/invoice.entity';
 import { Repository } from 'typeorm';
+import { EditInvoiceDTO } from './dto/update-invoice.dto';
 
 @Injectable()
 export class FinanceService {
@@ -16,6 +17,7 @@ export class FinanceService {
     const checkIfExists = await this.invoiceRepository.findOne({
       where: { invoiceNumber },
     });
+
     if (checkIfExists) {
       throw new HttpException(
         'An invoice with this number already exists',
@@ -27,26 +29,36 @@ export class FinanceService {
   }
 
   async findAll(): Promise<Invoice[]> {
-    const invoices = await this.invoiceRepository.find({
-      relations: ['client'],
-    });
-    return invoices;
+    return this.invoiceRepository.find({ relations: ['client'] });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} finance`;
+    return this.invoiceRepository.findOne({
+      where: { id },
+      relations: ['client'],
+    });
   }
 
-  // update(id: number, updateFinanceDto: UpdateFinanceDto) {
-  //   return `This action updates a #${id} finance`;
-  // }
+  async updateInvoice(id: number, editInvoiceDto: EditInvoiceDTO) {
+    const invoice = await this.invoiceRepository.findOne({ where: { id } });
 
-  async delete(invoiceNumber: string): Promise<void> {
+    if (!invoice)
+      throw new HttpException(
+        `Invoice with id: ${id} does not exist.`,
+        HttpStatus.BAD_REQUEST,
+      );
+
+    return this.invoiceRepository.update({ id }, editInvoiceDto);
+  }
+
+  async delete(invoiceNumber: string): Promise<Invoice> {
     const invoice = await this.invoiceRepository.findOne({
       where: { invoiceNumber },
     });
+
     if (!invoice)
       throw new HttpException('Invalid invoice', HttpStatus.BAD_REQUEST);
-    await this.invoiceRepository.remove(invoice); //might be an error
+
+    return this.invoiceRepository.remove(invoice);
   }
 }

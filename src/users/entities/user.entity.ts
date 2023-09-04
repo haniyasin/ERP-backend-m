@@ -57,7 +57,7 @@ export class User {
   @OneToMany(() => Leave, (leave) => leave.user)
   leaves: Leave[];
 
-  @Column('decimal', { precision: 10, scale: 2, nullable: true })
+  @Column('decimal', { precision: 10, scale: 2, nullable: true, default: 0 })
   leaveDaysLeft: number;
 
   @OneToMany(() => EmployeeDocument, (document) => document.user)

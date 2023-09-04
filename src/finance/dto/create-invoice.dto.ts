@@ -3,9 +3,7 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
-  Matches,
-  MinLength,
-  Validate,
+  IsOptional,
 } from 'class-validator';
 import { PaymentType, PaymentMethod } from '../enums';
 import { Client } from 'src/client/entities/client.entity';
@@ -51,7 +49,7 @@ export class CreateInvoiceDTO {
   @IsDateString({}, { message: 'Due date should be a valid date' })
   dueDate: Date;
 
-  @IsDateString({}, { message: 'Payment made on should be a valid date' })
+  @IsOptional()
   paymentMadeOn: Date;
 
   @IsEnum(PaymentMethod, { message: 'Invalid payment method' })

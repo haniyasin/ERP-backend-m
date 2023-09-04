@@ -20,6 +20,9 @@ export class Position {
   @Column()
   description: string;
 
+  @Column({ default: true })
+  isVacant: boolean;
+
   @OneToMany(() => Candidate, (candidate) => candidate.position)
   candidates: Candidate[];
 
