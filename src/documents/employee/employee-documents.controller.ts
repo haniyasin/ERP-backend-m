@@ -21,13 +21,13 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class EmployeeDocumentController {
   constructor(private employeeDocumentService: EmployeeDocumentService) {}
 
-  @Get(':id')
+  @Get(':userId')
   @Roles(RolesName.ADMIN, RolesName.HR)
   @UseGuards(RolesGuard)
   async getAll(
-    @Param() user: { id: number },
+    @Param('userId') userId: number,
   ): Promise<EmployeeDocument[] | null> {
-    return await this.employeeDocumentService.getAllEmployeeDocuments(user.id);
+    return await this.employeeDocumentService.getAllEmployeeDocuments(userId);
   }
 
   @Post()

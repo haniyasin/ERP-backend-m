@@ -21,7 +21,7 @@ import { EmployeeDocumentModule } from './documents/employee/employee-documents.
 import { EmployeeDocument } from './documents/employee/entities/employee-document.entity';
 import { ProjectsModule } from './projects/projects.module';
 import { Projects } from './projects/entities/project.entity';
-import { FinanceModule } from './invoices/invoice.module';
+import { FinanceModule } from './invoices/invoices.module';
 import { Invoice } from './invoices/entities/invoice.entity';
 import { PositionsModule } from './positions/positions.module';
 import { Position } from './positions/entities/position.entity';
@@ -34,6 +34,8 @@ import { Company } from './companies/entities/company.entity';
 import { Technologies } from './technologies/entities/technology.entity';
 import { ClientsModule } from './clients/clients.module';
 import { Client } from './clients/entities/client.entity';
+import { ReportsModule } from './reports/reports.module';
+import { Reports } from './reports/entities/report.entity';
 
 @Module({
   imports: [
@@ -52,6 +54,7 @@ import { Client } from './clients/entities/client.entity';
     CandidatesModule,
     CompaniesModule,
     ClientsModule,
+    ReportsModule,
     ConfigModule.forRoot(),
     MailerModule.forRoot({
       transport: {
@@ -78,6 +81,7 @@ import { Client } from './clients/entities/client.entity';
       Company,
       Technologies,
       Client,
+      Reports,
     ]),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -102,6 +106,7 @@ import { Client } from './clients/entities/client.entity';
         Company,
         Technologies,
         Client,
+        Reports,
       ],
       synchronize: true,
     }),

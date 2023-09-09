@@ -17,12 +17,12 @@ export class EmployeeDocumentService {
 
   async getAllEmployeeDocuments(userId: number): Promise<EmployeeDocument[]> {
     try {
-      const leaves = await this.employeeDocumentRepository.find({
+      const documents = await this.employeeDocumentRepository.find({
         relations: ['user'],
       });
-      return leaves.filter((leaves) => leaves.user.id == userId);
+      return documents.filter((document) => document.user.id == userId);
     } catch (error) {
-      throw new Error(`Error when fetching leaves: ${error}`);
+      throw new Error(`Error when fetching documents: ${error}`);
     }
   }
 
