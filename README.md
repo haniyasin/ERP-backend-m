@@ -1,6 +1,6 @@
 ## Description
 
-This is the backend for an Enterprise Resource Planing (System).
+This is the backend for an Enterprise Resource Planing (ERP) System.
 
 ## Installation
 
@@ -36,7 +36,7 @@ $ npm run test:cov
 
 ## Stay in touch
 
-- Author - [Matej Kostov] (https://www.linkedin.com/in/matej-kostov-949834134/)
+- Author - [Matej Kostov] ( https://www.linkedin.com/in/matej-kostov-949834134/ )
 
 ## License
 
