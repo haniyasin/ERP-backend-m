@@ -2,6 +2,7 @@ import { FilterOperator, FilterSuffix, PaginateConfig } from 'nestjs-paginate';
 import { Invoice } from './entities/invoice.entity';
 
 export const paginateConfig: PaginateConfig<Invoice> = {
+  relations: ['client'],
   sortableColumns: [
     'id',
     'createdAt',
@@ -35,7 +36,8 @@ export const paginateConfig: PaginateConfig<Invoice> = {
     'createdAt',
     'paymentType',
     'category',
-    'client',
+    'client.name',
+    'client.id',
     'notes',
     'currency',
     'amountWithVat',
