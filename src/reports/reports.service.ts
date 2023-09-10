@@ -5,6 +5,14 @@ import { Reports } from './entities/report.entity';
 import { Repository } from 'typeorm';
 import { EditReportDTO } from './dto/edit-report.dto';
 import * as path from 'path';
+import {
+  FilterOperator,
+  FilterSuffix,
+  PaginateQuery,
+  Paginated,
+  paginate,
+} from 'nestjs-paginate';
+import { paginateConfig } from './paginate-config';
 
 @Injectable()
 export class ReportsService {
@@ -43,8 +51,8 @@ export class ReportsService {
     return this.reportRepository.save(finishedEmployeeDocument);
   }
 
-  async findAll(): Promise<Reports[]> {
-    return this.reportRepository.find();
+  async findAll(query: PaginateQuery): Promise<Paginated<Reports>> {
+    return paginate(query, this.reportRepository, paginateConfig);
   }
 
   findOne(id: number) {

@@ -22,17 +22,20 @@ import { Reports } from './entities/report.entity';
 import { UpdateResult } from 'typeorm';
 import { EditReportDTO } from './dto/edit-report.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Public } from 'src/decorators/public.decorator';
+import { Paginate, PaginateQuery, Paginated } from 'nestjs-paginate';
 
 @Controller('reports')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
+  @Public()
   @Get()
   @Roles(RolesName.ADMIN, RolesName.FIN)
-  @UseGuards(RolesGuard)
+  // @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
-  findAll() {
-    return this.reportsService.findAll();
+  findAll(@Paginate() query: PaginateQuery): Promise<Paginated<Reports>> {
+    return this.reportsService.findAll(query);
   }
 
   @Post()

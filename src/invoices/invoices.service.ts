@@ -4,6 +4,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Invoice } from './entities/invoice.entity';
 import { Repository } from 'typeorm';
 import { EditInvoiceDTO } from './dto/update-invoice.dto';
+import { PaginateQuery, paginate, Paginated } from 'nestjs-paginate';
+import { paginateConfig } from './paginate-config';
 
 @Injectable()
 export class FinanceService {
@@ -28,8 +30,8 @@ export class FinanceService {
     }
   }
 
-  async findAll(): Promise<Invoice[]> {
-    return this.invoiceRepository.find({ relations: ['client'] });
+  async findAll(query: PaginateQuery): Promise<Paginated<Invoice>> {
+    return paginate(query, this.invoiceRepository, paginateConfig);
   }
 
   findOne(id: number) {

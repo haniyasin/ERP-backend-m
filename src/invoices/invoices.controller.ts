@@ -18,17 +18,20 @@ import { Invoice } from './entities/invoice.entity';
 import { RolesName } from 'src/roles/constants';
 import { EditInvoiceDTO } from './dto/update-invoice.dto';
 import { UpdateResult } from 'typeorm';
+import { Paginate, PaginateQuery, Paginated } from 'nestjs-paginate';
+import { Public } from 'src/decorators/public.decorator';
 
 @Controller('invoices')
 export class FinanceController {
   constructor(private readonly financeService: FinanceService) {}
 
+  @Public()
   @Get()
   @Roles(RolesName.ADMIN, RolesName.FIN)
-  @UseGuards(RolesGuard)
+  // @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
-  findAll() {
-    return this.financeService.findAll();
+  findAll(@Paginate() query: PaginateQuery): Promise<Paginated<Invoice>> {
+    return this.financeService.findAll(query);
   }
 
   @Post()
