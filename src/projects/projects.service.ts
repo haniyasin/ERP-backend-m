@@ -56,11 +56,7 @@ export class ProjectsService {
         HttpStatus.BAD_REQUEST,
       );
 
-    console.log(updateProjectDto, 'editing project');
-
-    await this.projectRepository.merge(project, updateProjectDto);
-
-    console.log(project, 'project');
+    this.projectRepository.merge(project, updateProjectDto);
 
     return await this.projectRepository.save(project);
   }
