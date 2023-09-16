@@ -5,13 +5,7 @@ import { Reports } from './entities/report.entity';
 import { Repository } from 'typeorm';
 import { EditReportDTO } from './dto/edit-report.dto';
 import * as path from 'path';
-import {
-  FilterOperator,
-  FilterSuffix,
-  PaginateQuery,
-  Paginated,
-  paginate,
-} from 'nestjs-paginate';
+import { PaginateQuery, Paginated, paginate } from 'nestjs-paginate';
 import { paginateConfig } from './paginate-config';
 
 @Injectable()

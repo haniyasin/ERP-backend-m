@@ -5,7 +5,7 @@ import {
   IsNumber,
   IsOptional,
 } from 'class-validator';
-import { PaymentType, PaymentMethod } from '../enums';
+import { PaymentType, PaymentMethod, InvoiceCategory } from '../enums';
 import { Client } from 'src/clients/entities/client.entity';
 
 export class EditInvoiceDTO {
@@ -18,8 +18,8 @@ export class EditInvoiceDTO {
   @IsEnum(PaymentType, { message: 'Invalid payment type' })
   paymentType: PaymentType;
 
-  @IsNotEmpty({ message: 'Category should not be empty' })
-  category: string;
+  @IsEnum(InvoiceCategory, { message: 'Invalid category type' })
+  category: InvoiceCategory;
 
   @IsNotEmpty({ message: 'Client should not be empty!' })
   client: Client;

@@ -3,6 +3,14 @@ export enum PaymentType {
   PAYABLE = 'Payable',
 }
 export enum PaymentMethod {
-  Cash = 'Cash',
-  Bank = 'Bank',
+  CASH = 'Cash',
+  BANK = 'Bank',
+}
+
+export enum InvoiceCategory {
+  UTILITIES = 'Utilities',
+  SOFTWARE = 'Software',
+  HARDWARE = 'Hardware',
+  SERVICES = 'Services',
+  OTHER = 'Other',
 }

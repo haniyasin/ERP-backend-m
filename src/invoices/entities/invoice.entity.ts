@@ -5,7 +5,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { PaymentType, PaymentMethod } from '../enums';
+import { PaymentType, PaymentMethod, InvoiceCategory } from '../enums';
 import { Client } from 'src/clients/entities/client.entity';
 
 @Entity()
@@ -23,7 +23,7 @@ export class Invoice {
   paymentType: PaymentType;
 
   @Column()
-  category: string;
+  category: InvoiceCategory;
 
   @ManyToOne(() => Client)
   client: Client;
