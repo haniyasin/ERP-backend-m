@@ -31,10 +31,8 @@ export class UsersService {
 
   async checkIsDBEmpty(): Promise<boolean> {
     const usersCount = await this.usersRepository.count();
-
     if (usersCount === 0) return true;
-
-    return false;
+    else return false;
   }
 
   async getAll(): Promise<User[] | null> {

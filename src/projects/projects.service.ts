@@ -3,6 +3,8 @@ import { Projects } from './entities/project.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
+import { CreateProjectDTO } from './dto/create-project.dto';
+import { UpdateProjectDTO } from './dto/update-project.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -13,16 +15,19 @@ export class ProjectsService {
     private userRepository: Repository<User>,
   ) {}
 
-  // create(createProjectDto: CreateProjectDto) {
-  //   return 'This action adds a new project';
-  // }
+  create(createProjectDto: CreateProjectDTO) {
+    return this.projectRepository.save(createProjectDto);
+  }
 
   async findAll(): Promise<Projects[]> {
-    return await this.projectRepository.find();
+    return await this.projectRepository.find({ relations: ['company'] });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} project`;
+    return this.projectRepository.findOne({
+      where: { id },
+      relations: ['company'],
+    });
   }
 
   async updateOpenPositions(id: number, numberOfOpenPositions: number) {
@@ -38,6 +43,26 @@ export class ProjectsService {
       ...project,
       openPositions: numberOfOpenPositions,
     });
+  }
+
+  async updateProject(id: number, updateProjectDto: UpdateProjectDTO) {
+    const project = await this.projectRepository.findOne({
+      where: { id },
+    });
+
+    if (!project)
+      throw new HttpException(
+        `Project with id: ${id} not found`,
+        HttpStatus.BAD_REQUEST,
+      );
+
+    console.log(updateProjectDto, 'editing project');
+
+    await this.projectRepository.merge(project, updateProjectDto);
+
+    console.log(project, 'project');
+
+    return await this.projectRepository.save(project);
   }
 
   async update(id: number, userId: number): Promise<Projects> {
@@ -91,7 +116,8 @@ export class ProjectsService {
     return newProject;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} project`;
+  async remove(id: number) {
+    const project = await this.projectRepository.findOne({ where: { id } });
+    return this.projectRepository.remove(project);
   }
 }

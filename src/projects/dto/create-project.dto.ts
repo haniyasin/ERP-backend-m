@@ -1,7 +1,7 @@
 import { IsNotEmpty, ValidateNested } from 'class-validator';
 import { Company } from 'src/companies/entities/company.entity';
 
-export class UpdateProjectDTO {
+export class CreateProjectDTO {
   @IsNotEmpty()
   name: string;
 

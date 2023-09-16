@@ -18,6 +18,9 @@ export class Projects {
   @Column()
   name: string;
 
+  @Column()
+  description: string;
+
   @Column({ nullable: true, default: 0 })
   openPositions: number;
 
