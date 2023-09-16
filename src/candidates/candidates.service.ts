@@ -16,9 +16,9 @@ export class CandidatesService {
   ) {}
 
   async create(createCandidateDto: CreateCandidateDto): Promise<Candidate> {
-
-    const candidate: Candidate = await this.createCandidateObject(createCandidateDto)
-    console.log(candidate);
+    const candidate: Candidate = await this.createCandidateObject(
+      createCandidateDto,
+    );
     return await this.candidateRepository.save(candidate);
   }
 
@@ -32,7 +32,6 @@ export class CandidatesService {
 
   async edit(editCandidateDto: UpdateCandidateDto): Promise<UpdateResult> {
     const candidateId = editCandidateDto.id;
-    console.log(candidateId);
     return await this.candidateRepository.update(candidateId, editCandidateDto);
   }
 
@@ -40,8 +39,12 @@ export class CandidatesService {
     return `This action removes a #${id} candidate`;
   }
 
-  private async createCandidateObject(createCandidateDto: CreateCandidateDto): Promise<Candidate> {
-    const position = await this.positionService.findOne(createCandidateDto.position.id);
+  private async createCandidateObject(
+    createCandidateDto: CreateCandidateDto,
+  ): Promise<Candidate> {
+    const position = await this.positionService.findOne(
+      createCandidateDto.position.id,
+    );
     if (!position) {
       throw new NotFoundException('Position not found');
     }
