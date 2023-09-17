@@ -11,6 +11,8 @@ export class DepartmentsController {
   constructor(private departmentsService: DepartmentsService) {}
 
   @Post()
+  @Roles(RolesName.ADMIN, RolesName.HR)
+  @UseGuards(RolesGuard)
   create(@Body() createDepartmentDto: CreateDepartmentDTO) {
     return this.departmentsService.create(createDepartmentDto);
   }

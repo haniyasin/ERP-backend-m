@@ -18,9 +18,9 @@ import { RolesGuard } from './roles.guard';
 export class RolesController {
   constructor(private rolesService: RolesService) {}
 
+  @Get()
   @Roles(RolesName.ADMIN)
   @UseGuards(RolesGuard)
-  @Get()
   async getAll(): Promise<Role[]> {
     return this.rolesService.findAll();
   }

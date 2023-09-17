@@ -21,28 +21,36 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Post()
+  @Roles(RolesName.ADMIN, RolesName.BDM)
+  @UseGuards(RolesGuard)
   create(@Body() createProjectDto: CreateProjectDTO) {
     return this.projectsService.create(createProjectDto);
   }
 
   @Get()
-  @Roles(RolesName.ADMIN, RolesName.HR)
+  @Roles(RolesName.ADMIN, RolesName.BDM)
   @UseGuards(RolesGuard)
   async findAll(): Promise<Projects[]> {
     return await this.projectsService.findAll();
   }
 
   @Get(':id')
+  @Roles(RolesName.ADMIN, RolesName.BDM)
+  @UseGuards(RolesGuard)
   findOne(@Param('id') id: string) {
     return this.projectsService.findOne(+id);
   }
 
   @Put('addUser/:id')
+  @Roles(RolesName.ADMIN, RolesName.BDM, RolesName.HR)
+  @UseGuards(RolesGuard)
   updateUserProject(@Param('id') id: number, @Body() body: { userId: number }) {
     return this.projectsService.update(id, body.userId);
   }
 
   @Put(':id')
+  @Roles(RolesName.ADMIN, RolesName.BDM)
+  @UseGuards(RolesGuard)
   update(
     @Param('id') id: number,
     @Body() updateProjectDto: { data: UpdateProjectDTO },
@@ -51,6 +59,8 @@ export class ProjectsController {
   }
 
   @Delete(':id')
+  @Roles(RolesName.ADMIN, RolesName.BDM)
+  @UseGuards(RolesGuard)
   remove(@Param('id') id: number) {
     return this.projectsService.remove(id);
   }

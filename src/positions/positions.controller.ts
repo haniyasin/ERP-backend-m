@@ -19,7 +19,6 @@ import { EditPositionDto } from './dto/edit-position.dto';
 import { UpdateResult } from 'typeorm';
 import { RolesName } from 'src/roles/constants';
 import { DeletePositionDTO } from './dto/delete-position,dto';
-import { Public } from 'src/decorators/public.decorator';
 
 @Controller('positions')
 export class PositionsController {
@@ -33,10 +32,10 @@ export class PositionsController {
     return await this.positionsService.create(createPositionDto);
   }
 
+  @Put(':id')
   @Roles(RolesName.ADMIN, RolesName.HR)
   @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
-  @Put(':id')
   async editPosition(
     @Param('id') id: number,
     @Body() editPositionDto: EditPositionDto,
@@ -44,21 +43,23 @@ export class PositionsController {
     return await this.positionsService.edit(id, editPositionDto);
   }
 
+  @Get()
   @Roles(RolesName.ADMIN, RolesName.HR)
   @UseGuards(RolesGuard)
-  @Get()
   async getAll(): Promise<Position[]> {
     return await this.positionsService.findAll();
   }
 
-  @Public()
   @Get('byCompany/:id')
+  @Roles(RolesName.ADMIN, RolesName.HR)
+  @UseGuards(RolesGuard)
   getAllByCompany(@Param('id') id: number): Promise<Position[]> {
     return this.positionsService.getAllByCompany(id);
   }
 
-  @Public()
   @Get('byProject/:id')
+  @Roles(RolesName.ADMIN, RolesName.HR)
+  @UseGuards(RolesGuard)
   getAllByProject(@Param('id') id: number): Promise<Position[]> {
     return this.positionsService.getAllByProject(id);
   }
