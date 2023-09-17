@@ -22,7 +22,7 @@ export class CompaniesController {
   constructor(private companiesService: CompaniesService) {}
 
   @Get()
-  @Roles(RolesName.ADMIN, RolesName.BDM)
+  @Roles(RolesName.ADMIN, RolesName.BDM, RolesName.HR)
   @UseGuards(RolesGuard)
   getAll(): Promise<Company[]> {
     return this.companiesService.getAll();

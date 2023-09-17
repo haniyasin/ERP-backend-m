@@ -51,14 +51,14 @@ export class PositionsController {
   }
 
   @Get('byCompany/:id')
-  @Roles(RolesName.ADMIN, RolesName.HR)
+  @Roles(RolesName.ADMIN, RolesName.HR, RolesName.BDM)
   @UseGuards(RolesGuard)
   getAllByCompany(@Param('id') id: number): Promise<Position[]> {
     return this.positionsService.getAllByCompany(id);
   }
 
   @Get('byProject/:id')
-  @Roles(RolesName.ADMIN, RolesName.HR)
+  @Roles(RolesName.ADMIN, RolesName.HR, RolesName.BDM)
   @UseGuards(RolesGuard)
   getAllByProject(@Param('id') id: number): Promise<Position[]> {
     return this.positionsService.getAllByProject(id);

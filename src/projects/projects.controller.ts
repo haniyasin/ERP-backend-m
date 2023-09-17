@@ -28,7 +28,7 @@ export class ProjectsController {
   }
 
   @Get()
-  @Roles(RolesName.ADMIN, RolesName.BDM)
+  @Roles(RolesName.ADMIN, RolesName.BDM, RolesName.HR)
   @UseGuards(RolesGuard)
   async findAll(): Promise<Projects[]> {
     return await this.projectsService.findAll();

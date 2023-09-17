@@ -25,7 +25,7 @@ export class FinanceController {
   constructor(private readonly financeService: FinanceService) {}
 
   @Get()
-  @Roles(RolesName.ADMIN, RolesName.FIN)
+  @Roles(RolesName.ADMIN, RolesName.FIN, RolesName.HR, RolesName.BDM)
   @UseGuards(RolesGuard)
   @UsePipes(new ValidationPipe())
   findAll(@Paginate() query: PaginateQuery): Promise<Paginated<Invoice>> {

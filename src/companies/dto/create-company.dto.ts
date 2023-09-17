@@ -12,6 +12,4 @@ export class CreateCompanyDTO {
 
   @IsPositive({ message: "Employee size can't be negative" })
   employeeSize: number;
-
-  openPositions: null;
 }

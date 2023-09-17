@@ -12,8 +12,21 @@ export class CompaniesService {
     private companyRepository: Repository<Company>,
   ) {}
 
-  create(company: CreateCompanyDTO): Promise<Company> {
-    return this.companyRepository.save(company);
+  async create(createCompanyDto: CreateCompanyDTO): Promise<Company> {
+    const company = await this.companyRepository.findOne({
+      where: { name: createCompanyDto.name },
+    });
+
+    console.log(company, 'company');
+    console.log(createCompanyDto, 'dto');
+
+    if (company)
+      throw new HttpException(
+        'Company with that name already exists',
+        HttpStatus.BAD_REQUEST,
+      );
+
+    return this.companyRepository.save(createCompanyDto);
   }
 
   getAll(): Promise<Company[]> {
