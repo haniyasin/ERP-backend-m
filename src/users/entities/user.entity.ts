@@ -38,7 +38,7 @@ export class User {
   @Column()
   startDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, default: false })
   isContractor: boolean;
 
   @Column({ nullable: true, type: 'bytea' })

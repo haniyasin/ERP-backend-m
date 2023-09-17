@@ -36,9 +36,9 @@ export class CompaniesController {
     return this.companiesService.create(createCompanyDTO);
   }
 
-  @Delete()
-  deleteCompanyByName(@Body('name') name: string): Promise<UpdateResult> {
-    return this.companiesService.removeCompany(name);
+  @Delete(':id')
+  deleteCompanyByName(@Param('id') id: number): Promise<UpdateResult> {
+    return this.companiesService.removeCompany(id);
   }
 
   @Put(':id')

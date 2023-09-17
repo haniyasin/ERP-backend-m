@@ -39,8 +39,6 @@ export class AuthController {
     return await this.authService.signIn(register.email, register.password);
   }
 
-  // We assign AuthGard making the profile Endpoint protected
-  // Meaning we can't access it without a valid token
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {

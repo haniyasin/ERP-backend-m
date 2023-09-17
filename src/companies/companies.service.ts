@@ -29,9 +29,9 @@ export class CompaniesService {
     });
   }
 
-  async removeCompany(name: string): Promise<UpdateResult> {
-    const company = await this.companyRepository.findOne({ where: { name } });
-    if (!company) throw new Error(`Company with name ${name} not found`);
+  async removeCompany(id: number): Promise<UpdateResult> {
+    const company = await this.companyRepository.findOne({ where: { id } });
+    if (!company) throw new Error(`Company with id ${id} not found`);
 
     return this.companyRepository.softDelete(company.id);
   }

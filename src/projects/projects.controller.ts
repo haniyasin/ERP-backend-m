@@ -37,6 +37,11 @@ export class ProjectsController {
     return this.projectsService.findOne(+id);
   }
 
+  @Put('addUser/:id')
+  updateUserProject(@Param('id') id: number, @Body() body: { userId: number }) {
+    return this.projectsService.update(id, body.userId);
+  }
+
   @Put(':id')
   update(
     @Param('id') id: number,
