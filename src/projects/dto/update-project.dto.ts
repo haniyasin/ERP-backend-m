@@ -8,6 +8,9 @@ export class UpdateProjectDTO {
   @IsNotEmpty()
   description: string;
 
+  @IsNotEmpty()
+  isActive: boolean;
+
   @ValidateNested()
   company: Company;
 }

@@ -20,13 +20,15 @@ export class ProjectsService {
   }
 
   async findAll(): Promise<Projects[]> {
-    return await this.projectRepository.find({ relations: ['company'] });
+    return await this.projectRepository.find({
+      relations: ['company', 'users', 'positions'],
+    });
   }
 
   findOne(id: number) {
     return this.projectRepository.findOne({
       where: { id },
-      relations: ['company'],
+      relations: ['company', 'users', 'positions'],
     });
   }
 

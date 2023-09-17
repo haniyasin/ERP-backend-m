@@ -21,6 +21,9 @@ export class Projects {
   @Column()
   description: string;
 
+  @Column({ default: true })
+  isActive: boolean;
+
   @Column({ nullable: true, default: 0 })
   openPositions: number;
 
