@@ -57,6 +57,12 @@ export class PositionsController {
     return this.positionsService.getAllByCompany(id);
   }
 
+  @Public()
+  @Get('byProject/:id')
+  getAllByProject(@Param('id') id: number): Promise<Position[]> {
+    return this.positionsService.getAllByProject(id);
+  }
+
   @Get(':id')
   @Roles(RolesName.ADMIN, RolesName.HR)
   @UseGuards(RolesGuard)

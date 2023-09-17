@@ -82,6 +82,13 @@ export class PositionsService {
     });
   }
 
+  getAllByProject(projectId: number): Promise<Position[]> {
+    return this.positionsRepository.find({
+      relations: ['project', 'company'],
+      where: { project: { id: projectId } },
+    });
+  }
+
   async deletePositionById(id: number, deletePositionDto: DeletePositionDTO) {
     const position = await this.positionsRepository.findOne({ where: { id } });
 
